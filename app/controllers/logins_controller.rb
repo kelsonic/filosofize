@@ -3,7 +3,7 @@ get "/" do
 end
 
 get "/login" do
-  erb :"logins/login"
+  erb :"logins/login", layout: !request.xhr?
 end
 
 

@@ -32,9 +32,16 @@ post '/ponderings/:id/upvote' do
   @upvote = @pondering.upvotes.new(filosofer_id: current_user.id)
 
   if @upvote.save
+    if request.xhr?
+      return (@pondering.upvotes.size - @pondering.downvotes.size).to_s
+    end
     redirect "/ponderings/#{@pondering.id}"
   else
+
     @errors = @upvote.errors.full_messages
+    if request.xhr?
+      return "Already Voted"
+    end
     redirect "/ponderings/#{@pondering.id}"
   end
 end
@@ -45,9 +52,16 @@ post '/ponderings/:id/downvote' do
   @downvote = @pondering.downvotes.new(filosofer_id: current_user.id)
 
   if @downvote.save
+    if request.xhr?
+      return (@pondering.upvotes.size - @pondering.downvotes.size).to_s
+    end
     redirect "/ponderings/#{@pondering.id}"
   else
+
     @errors = @downvote.errors.full_messages
+    if request.xhr?
+      return "Already Voted"
+    end
     redirect "/ponderings/#{@pondering.id}"
   end
 end
