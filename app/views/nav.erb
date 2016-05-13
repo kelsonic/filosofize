@@ -1,16 +1,20 @@
 <nav>
   <div class="nav-wrapper teal lighten-1">
     <a href="/" class="brand-logo center">Filosofize</a>
+    <ul class="left">
+      <% if current_user %>
+        <li><a href="/ponderings">Explore</a></li>
+        <li><a href="/ponderings/new">Ponder</a></li>
+      <% end %>
+    </ul>
     <ul class="right">
       <% if current_user %>
-        <li><a class="black-text" href="/filosofers/<%= current_user.id %>"><%= current_user.username %></a></li>
+        <li><a class="deep-purple-text" href="/filosofers/<%= current_user.id %>"><%= current_user.username %></a></li>
         <li><a href="/logout" >Logout</a></li>
       <% else %>
         <li><a href="/filosofers/new">Sign Up</a></li>
         <li><a href="/login">Login</a></li>
       <% end %>
-
-      <li><a href="/ponderings">Explore</a></li>
 
     </ul>
   </div>
