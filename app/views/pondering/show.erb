@@ -1,49 +1,45 @@
 <!-- Display a specific pondering -->
+<section class="pondering">
+  <div class="row">
+    <div class="col l3 center">
+      <h5 class="blue-text"><%= @pondering.filosofer.username %></h5>
+      <!-- Upvote -->
+      <p class="light-green-text"><%= @pondering.upvotes.size %></p>
+      <form action="/ponderings/<%= @pondering.id %>/upvote" method="post">
+        <input type="submit" class="btn light-green waves-effect waves-light" value="Upvote" name="Upvote"></input>
+      </form>
 
-<div class="container">
-  <div class="pondering">
-    <div class="row">
-      <div class="col l3 align-left">
-        <%= @pondering.filosofer.username %>
-      </div>
-      <%= @pondering.body %>
+      <br/><br/>
+
+      <!-- Downvote -->
+      <form action="/ponderings/<%= @pondering.id %>/downvote" method="post">
+        <input type="submit" class="btn red waves-effect waves-light" value="Downvote" name="Downvote"></input>
+      </form>
+      <p class="red-text text-lighten-2"> <%= @pondering.downvotes.size %></p>
     </div>
-
-    <div class="row">
-      <div class="col s4 m2 offset-m2 l1 offset-l3">
-        <!-- Form for upvote
-        Not sure if the form action is correct with the upvote and the end of the link -->
-        <form action="/ponderings/<%= @pondering.id %>/upvote" method="post">
-          <input type="submit" value="Upvote" name="Upvote"</input>
-        </form>
-        <p class="light-green-text"><%= @pondering.upvotes.size %></p>
-        <!-- Form for downvote
-        Again, may need to change form action -->
-        <form action="/ponderings/<%= @pondering.id %>/downvote" method="post">
-          <input type="submit" value="Downvote" name="Downvote"</input>
-        </form>
-        <p class="light-red-text"> <%= @pondering.downvotes.size %></p>
-      </div>
-    </div>
-
-    <% @pondering.theories.each do |theory| %>
-      <div class="theories">
-        <%= theory.body %>
-          <div class="row">
-            <div class="col l1">
-              <!-- upvote and downvote forms for theories -->
-              <form action="/ponderings/<%= @pondering.id %>/upvote" method="post">
-                <input type="submit" value="Upvote" name="Upvote"</input>
-              </form>
-                <p class="light-green-text"><%= @pondering.upvotes.size %></p>
-
-              <form action="/ponderings/<%= @pondering.id %>/downvote" method="post">
-                <input type="submit" value="Downvote" name="Downvote"</input>
-              </form>
-                <p class="light-red-text"> <%= @pondering.downvotes.size %></p>
-            </div>
-          </div>
-      </div>
-      <% end %>
+    <h3><%= @pondering.body %></h3>
   </div>
-</div>
+
+  <% @pondering.theories.each do |theory| %>
+    <section class="theories">
+      <%= theory.body %>
+        <div class="row">
+          <div class="col l1">
+            <!-- Upvote -->
+            <p class="light-green-text"><%= @pondering.upvotes.size %></p>
+            <form action="/ponderings/<%= @pondering.id %>/upvote" method="post">
+              <input type="submit" class="btn light-green waves-effect waves-light" value="Upvote" name="Upvote"></input>
+            </form>
+
+            <br/><br/>
+
+            <!-- Downvote -->
+            <form action="/ponderings/<%= @pondering.id %>/downvote" method="post">
+              <input type="submit" class="btn red waves-effect waves-light" value="Downvote" name="Downvote"></input>
+            </form>
+            <p class="red-text text-lighten-2"> <%= @pondering.downvotes.size %></p>
+          </div>
+        </div>
+    </section>
+    <% end %>
+</section>
