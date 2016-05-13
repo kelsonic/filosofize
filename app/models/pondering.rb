@@ -6,5 +6,5 @@ class Pondering < ActiveRecord::Base
   belongs_to :filosofer
 
   validates :body, presence: true, length: {in: 5..2000}
-  # validates :filosofer_id, presence: true, numericality: {only_integer: true}
+  validates :title, presence: true, length: {in: 2..100}
 end

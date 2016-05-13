@@ -1,45 +1,65 @@
 <!-- Display a specific pondering -->
 <section class="pondering">
   <div class="row">
-    <div class="col l3 center">
-      <h5 class="blue-text"><%= @pondering.filosofer.username %></h5>
+    <!-- Votes -->
+    <div class="col s4 l2 center">
+      <br/>
+
       <!-- Upvote -->
-      <p class="light-green-text"><%= @pondering.upvotes.size %></p>
       <form action="/ponderings/<%= @pondering.id %>/upvote" method="post">
         <input type="submit" class="btn light-green waves-effect waves-light" value="Upvote" name="Upvote"></input>
       </form>
 
-      <br/><br/>
+      <p class="grey-text"><%= @pondering.upvotes.size - @pondering.downvotes.size %></p>
 
       <!-- Downvote -->
       <form action="/ponderings/<%= @pondering.id %>/downvote" method="post">
         <input type="submit" class="btn red waves-effect waves-light" value="Downvote" name="Downvote"></input>
       </form>
-      <p class="red-text text-lighten-2"> <%= @pondering.downvotes.size %></p>
+
+      <br/><br/>
+
+      <button class="btn waves-effect waves-light amber"><a class="white-text" href="/ponderings/<%= @pondering.id %>/theories/new">Theorify</a></button>
     </div>
-    <h3><%= @pondering.body %></h3>
+    <!-- End Votes -->
+
+    <div class="col s8 l10 center">
+      <h2><%= @pondering.title %></h2>
+      <p class="light-green-text"><%= @pondering.filosofer.username %></p>
+      <p class="flow-text teal-text"><%= @pondering.body %></p>
+    </div>
   </div>
 
-  <% @pondering.theories.each do |theory| %>
-    <section class="theories">
-      <%= theory.body %>
-        <div class="row">
-          <div class="col l1">
-            <!-- Upvote -->
-            <p class="light-green-text"><%= @pondering.upvotes.size %></p>
-            <form action="/ponderings/<%= @pondering.id %>/upvote" method="post">
-              <input type="submit" class="btn light-green waves-effect waves-light" value="Upvote" name="Upvote"></input>
-            </form>
+  <% if @pondering.theories.any? %>
 
-            <br/><br/>
+    <h3 class="center white-text teal darken-2">Theories</h3>
 
-            <!-- Downvote -->
-            <form action="/ponderings/<%= @pondering.id %>/downvote" method="post">
-              <input type="submit" class="btn red waves-effect waves-light" value="Downvote" name="Downvote"></input>
-            </form>
-            <p class="red-text text-lighten-2"> <%= @pondering.downvotes.size %></p>
-          </div>
+    <% @pondering.theories.each do |theory| %>
+      <div class="row">
+        <!-- Votes -->
+        <div class="col s4 l2 center">
+          <br/>
+
+          <!-- Upvote -->
+          <form action="/ponderings/<%= @pondering.id %>/theories/<%= theory.id %>/upvote" method="post">
+            <input type="submit" class="btn light-green waves-effect waves-light" value="Upvote" name="Upvote"></input>
+          </form>
+
+          <p class="grey-text"><%= theory.upvotes.size - theory.downvotes.size %></p>
+
+          <!-- Downvote -->
+          <form action="/ponderings/<%= @pondering.id %>/theories/<%= theory.id %>/downvote" method="post">
+            <input type="submit" class="btn red waves-effect waves-light" value="Downvote" name="Downvote"></input>
+          </form>
         </div>
-    </section>
+        <!-- End Votes -->
+
+        <div class="col s8 l10 center">
+          <p class="flow-text"><%= theory.body %></p>
+          <p class="align-right light-green-text"><%= theory.filosofer.username %></p>
+        </div>
+      </div>
+      <div class="divider"></div>
     <% end %>
+  <% end %>
 </section>
