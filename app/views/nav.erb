@@ -4,14 +4,14 @@
     <ul class="right">
       <% unless current_user %>
         <li><a href="/filosofers/new">Sign Up</a></li>
-        <li><a href="#">Login</a></li>
+        <li><a href="/login">Login</a></li>
       <% end %>
       <% if current_user %>
-        <li><a href="#" class="material-icons"><%= current_user.name %></a></li>
-        <li><a href="#" >Logout</a></li>
+        <li><a href="/filosofers/<%= current_user.id %>" class="material-icons"><%= current_user.name %></a></li>
+        <li><a href="/logout" >Logout</a></li>
       <% end %>
 
-      <li><a href="#">Explore</a></li>
+      <li><a href="/ponderings">Explore</a></li>
 
     </ul>
   </div>

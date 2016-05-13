@@ -1,4 +1,4 @@
-get '/filosofer' do
+get '/filosofers' do
 
   @filosofer = Filosofer.all #define instance variable for view
 
@@ -7,24 +7,24 @@ get '/filosofer' do
 end
 
 get '/filosofers/new' do
-  erb :'filosofer/new'
+  erb :'filosofers/new'
 end
 
-post '/filosofer' do
+post '/filosofers' do
 
   #below works with properly formatted params in HTML form
   @filosofer = Filosofer.new(params[:filosofer]) #create new filosofer
 
   if @filosofer.save #saves new filosofer or returns false if unsuccessful
-    redirect '/filosofer' #redirect back to filosofer index page
+    redirect '/filosofers' #redirect back to filosofer index page
   else
     @errors = @filosofer.errors.full_messages
-    erb :'filosofer/new' # show new filosofer view again(potentially displaying errors)
+    erb :'filosofers/new' # show new filosofer view again(potentially displaying errors)
   end
 
 end
 
-get '/filosofer/:id' do
+get '/filosofers/:id' do
 
   #gets params from url
 
@@ -34,16 +34,16 @@ get '/filosofer/:id' do
 
 end
 
-get '/filosofer/:id/edit' do
+get '/filosofers/:id/edit' do
 
   #get params from url
   @filosofer = Filosofer.find(params[:id]) #define intstance variable for view
 
-  erb :'filosofer/edit' #show edit filosofer view
+  erb :'filosofers/edit' #show edit filosofer view
 
 end
 
-put '/filosofer/:id' do
+put '/filosofers/:id' do
 
   #get params from url
   @filosofer = Filosofer.find(params[:id]) #define variable to edit
@@ -51,21 +51,21 @@ put '/filosofer/:id' do
   @filosofer.assign_attributes(params[:filosofer]) #assign new attributes
 
   if @filosofer.save #saves new filosofer or returns false if unsuccessful
-    redirect '/filosofer' #redirect back to filosofer index page
+    redirect '/filosofers' #redirect back to filosofer index page
   else
-    erb :'filosofer/edit' #show edit filosofer view again(potentially displaying errors)
+    erb :'filosofers/edit' #show edit filosofer view again(potentially displaying errors)
   end
 
 end
 
-delete '/filosofer/:id' do
+delete '/filosofers/:id' do
 
   #get params from url
   @filosofer = Filosofer.find(params[:id]) #define filosofer to delete
 
   @filosofer.destroy #delete filosofer
 
-  redirect '/filosofer' #redirect back to filosofer index page
+  redirect '/filosofers' #redirect back to filosofer index page
 
 end
 
