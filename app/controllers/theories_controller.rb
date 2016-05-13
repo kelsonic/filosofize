@@ -19,7 +19,6 @@ post "/ponderings/:id/theories" do
 end
 
 post '/ponderings/:pondering_id/theories/:id/upvote' do
-  logged_in?
   @pondering = Pondering.find(params[:pondering_id])
   @theory = Theory.find(params[:id])
   @upvote = @theory.upvotes.new(filosofer_id: current_user.id)
@@ -33,7 +32,6 @@ post '/ponderings/:pondering_id/theories/:id/upvote' do
 end
 
 post '/ponderings/:pondering_id/theories/:id/downvote' do
-  logged_in?
   @pondering = Pondering.find(params[:pondering_id])
   @theory = Theory.find(params[:id])
   @downvote = @theory.downvotes.new(filosofer_id: current_user.id)
@@ -42,6 +40,18 @@ post '/ponderings/:pondering_id/theories/:id/downvote' do
     redirect "/ponderings/#{@pondering.id}"
   else
     @errors = @downvote.errors.full_messages
+    redirect "/ponderings/#{@pondering.id}"
+  end
+end
+
+post '/ponderings/:pondering_id/theories/:id/best' do
+  @pondering = Pondering.find(params[:pondering_id])
+  @theory = Theory.find(params[:id])
+  @theory.best_theory = true
+  if @theory.save
+    redirect "/ponderings/#{@pondering.id}"
+  else
+    @errors = @theory.errors.full_messages
     redirect "/ponderings/#{@pondering.id}"
   end
 end

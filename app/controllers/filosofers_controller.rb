@@ -14,7 +14,7 @@ post '/filosofers' do
   @filosofer = Filosofer.new(params[:filosofer]) #create new filosofer
 
   if @filosofer.save #saves new filosofer or returns false if unsuccessful
-    redirect "/filosofers/#{@filosofer.id}" #redirect back to filosofer index page
+    redirect "/login" #redirect back to filosofer index page
   else
     @errors = @filosofer.errors.full_messages
     erb :'filosofers/new' # show new filosofer view again(potentially displaying errors)
