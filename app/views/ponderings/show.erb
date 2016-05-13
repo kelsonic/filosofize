@@ -1,1 +1,45 @@
-Display a specific pondering
+<!-- Display a specific pondering -->
+<section class="pondering">
+  <div class="row">
+    <div class="col l3 center">
+      <h5 class="blue-text"><%= @pondering.filosofer.username %></h5>
+      <!-- Upvote -->
+      <p class="light-green-text"><%= @pondering.upvotes.size %></p>
+      <form action="/ponderings/<%= @pondering.id %>/upvote" method="post">
+        <input type="submit" class="btn light-green waves-effect waves-light" value="Upvote" name="Upvote"></input>
+      </form>
+
+      <br/><br/>
+
+      <!-- Downvote -->
+      <form action="/ponderings/<%= @pondering.id %>/downvote" method="post">
+        <input type="submit" class="btn red waves-effect waves-light" value="Downvote" name="Downvote"></input>
+      </form>
+      <p class="red-text text-lighten-2"> <%= @pondering.downvotes.size %></p>
+    </div>
+    <h3><%= @pondering.body %></h3>
+  </div>
+
+  <% @pondering.theories.each do |theory| %>
+    <section class="theories">
+      <%= theory.body %>
+        <div class="row">
+          <div class="col l1">
+            <!-- Upvote -->
+            <p class="light-green-text"><%= @pondering.upvotes.size %></p>
+            <form action="/ponderings/<%= @pondering.id %>/upvote" method="post">
+              <input type="submit" class="btn light-green waves-effect waves-light" value="Upvote" name="Upvote"></input>
+            </form>
+
+            <br/><br/>
+
+            <!-- Downvote -->
+            <form action="/ponderings/<%= @pondering.id %>/downvote" method="post">
+              <input type="submit" class="btn red waves-effect waves-light" value="Downvote" name="Downvote"></input>
+            </form>
+            <p class="red-text text-lighten-2"> <%= @pondering.downvotes.size %></p>
+          </div>
+        </div>
+    </section>
+    <% end %>
+</section>
