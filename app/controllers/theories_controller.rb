@@ -1,4 +1,5 @@
 get "/ponderings/:id/theories/new" do
+  logged_in?
   @pondering = Pondering.find(params[:id])
   erb :'theories/new'
 end

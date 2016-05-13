@@ -4,7 +4,6 @@ get '/comment/new' do
 end
 
 post '/comment' do
-
   @comment = Comment.new(params[:comment]) #create new comment
 
   if @comment.save
@@ -13,6 +12,5 @@ post '/comment' do
     @errors = @comment.errors.full_messages
     erb :'comment/new'
   end
-
 end
 

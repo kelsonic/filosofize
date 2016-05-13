@@ -1,9 +1,7 @@
 get '/filosofers' do
-
+  logged_in?
   @filosofer = Filosofer.all #define instance variable for view
-
   erb :'filosofer/index' #show all filosofer view (index)
-
 end
 
 get '/filosofers/new' do
@@ -25,48 +23,31 @@ post '/filosofers' do
 end
 
 get '/filosofers/:id' do
-
-  #gets params from url
-
+  logged_in?
   @filosofer = Filosofer.find(params[:id]) #define instance variable for view
-
   erb :'filosofer/show' #show single filosofer view
-
 end
 
 get '/filosofers/:id/edit' do
-
-  #get params from url
+  logged_in?
   @filosofer = Filosofer.find(params[:id]) #define intstance variable for view
-
   erb :'filosofers/edit' #show edit filosofer view
-
 end
 
 put '/filosofers/:id' do
-
-  #get params from url
   @filosofer = Filosofer.find(params[:id]) #define variable to edit
-
   @filosofer.assign_attributes(params[:filosofer]) #assign new attributes
-
   if @filosofer.save #saves new filosofer or returns false if unsuccessful
     redirect '/filosofers' #redirect back to filosofer index page
   else
     erb :'filosofers/edit' #show edit filosofer view again(potentially displaying errors)
   end
-
 end
 
 delete '/filosofers/:id' do
-
-  #get params from url
   @filosofer = Filosofer.find(params[:id]) #define filosofer to delete
-
   @filosofer.destroy #delete filosofer
-
   redirect '/filosofers' #redirect back to filosofer index page
-
 end
 
 
