@@ -8,8 +8,9 @@
       </div>
       <%= @pondering.body %>
     </div>
+
     <div class="row">
-      <div class="col l1">
+      <div class="col s4 m2 offset-m2 l1 offset-l3">
         <!-- Form for upvote
         Not sure if the form action is correct with the upvote and the end of the link -->
         <form action="/ponderings/<%= pondering.id %>/upvote" method="post">
@@ -24,6 +25,7 @@
         <p class="light-red-text"> <%= @pondering.downvotes.size %></p>
       </div>
     </div>
+
     <% @pondering.theories.each do |theory| %>
       <div class="theories">
         <%= theory.body %>
