@@ -9,7 +9,7 @@
 end
 
 20.times do
-  Filosofer.find(rand(1..9)).ponderings.create(body: "Does a #{Faker::StarWars.specie} #{Faker::Hacker.verb} #{Faker::StarWars.character} on a #{Faker::StarWars.vehicle}?")
+  Filosofer.find(rand(1..9)).ponderings.create(title: "#{Faker::Book.title} of #{Faker::StarWars.planet}",body: "Does a #{Faker::StarWars.specie} #{Faker::Hacker.verb} #{Faker::StarWars.character} on a #{Faker::StarWars.vehicle}?")
 end
 
 20.times do
