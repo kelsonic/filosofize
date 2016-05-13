@@ -6,10 +6,15 @@
 
 <div class='row'>
   <div class='col s8 offset-s2'>
-    <ul><%= current_user.name%> Stats</ul>
-    <li>Points: <%= @points%></li>
-    <li>Number of Ponders: <%= current_user.ponderings.count%></li>
-    <li>Number of Theories: <%= current_user.theories.count%></li>
+
+      <ul class="collection with-header">
+        <li class="collection-header teal-text"><h5><%= current_user.name%> Stats</h5></li>
+        <li class="collection-item">Number of Ponders: <%= current_user.ponderings.count %></li>
+        <li class="collection-item">Number of Theories: <%= current_user.theories.count %></li>
+        <li class="collection-item">Points: <%= @points %></li>
+      </ul>
 
   </div>
 </div>
+
+
