@@ -1,1 +1,15 @@
-# filosofer profile page
+<div class='row'>
+  <div class='col s8 offset-s2 teal-text'>
+    <h3>Hello <%= current_user.name%></h3>
+  </div>
+</div>
+
+<div class='row'>
+  <div class='col s8 offset-s2'>
+    <ul><%= current_user.name%> Stats</ul>
+    <li>Points: <%= @points%></li>
+    <li>Number of Ponders: <%= current_user.ponderings.count%></li>
+    <li>Number of Theories: <%= current_user.theories.count%></li>
+
+  </div>
+</div>
