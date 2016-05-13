@@ -13,13 +13,19 @@ end
 end
 
 20.times do
-  pondering_1 = Filosofer.find(rand(1..9)).ponderings.shuffle.pop
-  pondering_1.theories.create(body: Faker::StarWars.quote) unless pondering_1 == nil
+  pondering_1 = Pondering.all.sample
+  #pondering_1.theories.create(body: Faker::StarWars.quote, filosofer_id: rand(1..5), best_theory: false)
+  theory = Theory.create(body: Faker::StarWars.quote, filosofer_id: rand(1..5), best_theory: false)
+  pondering_1.theories << theory
 end
 
 20.times do
-  Pondering.all.shuffle.pop.comments.create(filosofer_id: rand(20), body: Faker::StarWars.quote)
-  Theory.all.shuffle.pop.comments.create(filosofer_id: rand(20), body: Faker::StarWars.quote)
+  pondering = Pondering.all.sample#
+  comment = Comment.create(filosofer_id: rand(1..20), body: Faker::StarWars.quote)
+  pondering.comments << comment
+  theory = Theory.all.sample#
+  comment = Comment.create(filosofer_id: rand(1..20), body: Faker::StarWars.quote)
+  theory.comments << comment
 end
 
 # Add comments, upvotes, and downvotes
