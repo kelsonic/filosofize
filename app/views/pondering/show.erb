@@ -12,7 +12,13 @@
       <form action="/ponderings/<%= pondering.id %>/upvote" method="post">
       <input type="submit" value="Upvote" name="Upvote"</input>
       </form>
-
+      <p class="light-green-text"><%= @pondering.upvotes.size %></p>
+      <!-- Form for downvote
+      Again, may need to change form action -->
+      <form action="/ponderings/<%= pondering.id %>/downvote" method="post">
+      <input type="submit" value="Downvote" name="Downvote"</input>
+      </form>
+      <p class="light-red-text"> <%= @pondering.downvotes.size %></p>
       </div>
     </div>
   </div>
