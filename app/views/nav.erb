@@ -2,13 +2,12 @@
   <div class="nav-wrapper teal lighten-1">
     <a href="/" class="brand-logo center">Filosofize</a>
     <ul class="right">
-      <% unless current_user %>
+      <% if current_user %>
+        <li><a class="black-text" href="/filosofers/<%= current_user.id %>"><%= current_user.username %></a></li>
+        <li><a href="/logout" >Logout</a></li>
+      <% else %>
         <li><a href="/filosofers/new">Sign Up</a></li>
         <li><a href="/login">Login</a></li>
-      <% end %>
-      <% if current_user %>
-        <li><a href="/filosofers/<%= current_user.id %>" class="material-icons"><%= current_user.name %></a></li>
-        <li><a href="/logout" >Logout</a></li>
       <% end %>
 
       <li><a href="/ponderings">Explore</a></li>
