@@ -17,3 +17,31 @@ post "/ponderings/:id/theories" do
     erb :'theories/new'
   end
 end
+
+post '/ponderings/:pondering_id/theories/:id/upvote' do
+  logged_in?
+  @pondering = Pondering.find(params[:pondering_id])
+  @theory = Theory.find(params[:id])
+  @upvote = @theory.upvotes.new(filosofer_id: current_user.id)
+
+  if @upvote.save
+    redirect "/ponderings/#{@pondering.id}"
+  else
+    @errors = @upvote.errors.full_messages
+    redirect "/ponderings/#{@pondering.id}"
+  end
+end
+
+post '/ponderings/:pondering_id/theories/:id/downvote' do
+  logged_in?
+  @pondering = Pondering.find(params[:pondering_id])
+  @theory = Theory.find(params[:id])
+  @downvote = @theory.downvotes.new(filosofer_id: current_user.id)
+
+  if @downvote.save
+    redirect "/ponderings/#{@pondering.id}"
+  else
+    @errors = @downvote.errors.full_messages
+    redirect "/ponderings/#{@pondering.id}"
+  end
+end
