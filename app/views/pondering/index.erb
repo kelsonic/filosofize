@@ -1,3 +1,22 @@
 # display top 10 ponderings
+#order by newest (default), upvoted, most theorized, etc ...
 
-order by newest (default), upvoted, most theorized, etc ...
+      <div class="row">
+      <% ponderings.each do |pondering| %>
+        <div class="col s12 m6">
+          <div class="card white">
+            <div class="card-content teal-text">
+              <span class="card-title">pondering.title</span>
+              <div class="card-author">
+              <%= pondering.filosofer.username %>
+              </div>
+              <p><%= pondering.body %></p>
+            </div>
+            <div class="card-action">
+              <p class="light-green-text">Upvote <%= pondering.upvotes.size %></p>
+              <p class="light-red-text">Downvote <%= pondering.downvotes.size %></p>
+            </div>
+          </div>
+        </div>
+        <%= end %>
+      </div>
