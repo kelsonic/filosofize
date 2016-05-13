@@ -18,3 +18,8 @@ get '/ponderings/:id' do
   @pondering = Pondering.find(params[:id])
   erb :'ponderings/show'
 end
+
+get '/ponderings' do
+  @ponderings = Pondering.all
+  erb :'ponderings/index'
+end

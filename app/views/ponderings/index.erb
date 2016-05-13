@@ -1,22 +1,28 @@
 <!-- display top 10 ponderings
 order by newest (default), upvoted, most theorized, etc ... -->
 
-      <div class="row">
-      <% ponderings.each do |pondering| %>
-        <div class="col s12 m6">
-          <div class="card white">
-            <div class="card-content teal-text">
-              <span class="card-title">pondering.title</span>
-              <div class="card-author">
+<div class="row teal darken-3">
+  <% @ponderings.each do |pondering| %>
+    <div class="col s12 m6">
+      <div class="card white">
+        <div class="card-content teal-text">
+          <a href="/ponderings/<%= pondering.id %>">
+            <span class="card-title light-blue-text"><%= pondering.title %></span>
+            <div class="card-author light-green-text">
               <%= pondering.filosofer.username %>
-              </div>
-              <p><%= pondering.body %></p>
             </div>
-            <div class="card-action">
-              <p class="light-green-text">Upvote <%= pondering.upvotes.size %></p>
-              <p class="light-red-text">Downvote <%= pondering.downvotes.size %></p>
-            </div>
-          </div>
+          </a>
         </div>
-        <%= end %>
+        <div class="card-action center">
+          <% if (pondering.upvotes.size - pondering.downvotes.size) > 0 %>
+            <h3 class="light-green-text"><%= pondering.upvotes.size - pondering.downvotes.size %></h3>
+          <% elsif (pondering.upvotes.size - pondering.downvotes.size) < 0 %>
+            <h3 class="red-text"><%= pondering.upvotes.size - pondering.downvotes.size %></h3>
+          <% else %>
+            <h3 class="grey-text"><%= pondering.upvotes.size - pondering.downvotes.size %></h3>
+          <% end %>
+        </div>
       </div>
+    </div>
+  <% end %>
+</div>
