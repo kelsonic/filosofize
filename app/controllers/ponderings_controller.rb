@@ -22,7 +22,7 @@ end
 
 get '/ponderings' do
   # logged_in?
-  @ponderings = Pondering.all
+  @ponderings = sorted_ponderings
   erb :'ponderings/index'
 end
 
