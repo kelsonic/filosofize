@@ -15,18 +15,19 @@ post '/ponderings' do
 end
 
 get '/ponderings/:id' do
-  logged_in?
+  # logged_in?
   @pondering = Pondering.find(params[:id])
   erb :'ponderings/show'
 end
 
 get '/ponderings' do
-  logged_in?
+  # logged_in?
   @ponderings = Pondering.all
   erb :'ponderings/index'
 end
 
 post '/ponderings/:id/upvote' do
+  logged_in?
   @pondering = Pondering.find(params[:id])
   @upvote = @pondering.upvotes.new(filosofer_id: current_user.id)
 
@@ -39,6 +40,7 @@ post '/ponderings/:id/upvote' do
 end
 
 post '/ponderings/:id/downvote' do
+  logged_in?
   @pondering = Pondering.find(params[:id])
   @downvote = @pondering.downvotes.new(filosofer_id: current_user.id)
 
