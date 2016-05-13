@@ -56,7 +56,7 @@
 
           <% if theory.best_theory == true %>
             <span class="light-green-text"><i class="material-icons large">done</i></span>
-          <% else %>
+          <% elsif current_user.id == @pondering.filosofer.id %>
             <br/>
             <form action="/ponderings/<%= @pondering.id %>/theories/<%= theory.id %>/best" method="post">
               <button class="btn waves-effect waves-light deep-purple">Best Answer</button>
