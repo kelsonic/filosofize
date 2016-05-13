@@ -15,7 +15,7 @@ $(document).ready(function() {
     })
   })
 
-  $(".votes").on('click', function(event){
+  $(".upvotes").on('click', function(event){
     event.preventDefault();
     var link = $(this).attr('action');
   $.ajax({
@@ -26,7 +26,17 @@ $(document).ready(function() {
       $(".vote-tally").text(msg)
     })
   })
-
+  $(".downvotes").on('click', function(event){
+    event.preventDefault();
+    var link = $(this).attr('action');
+  $.ajax({
+    method: "POST",
+    url: link
+  })
+    .done(function(msg){
+      $(".vote-tally").text(msg)
+    })
+  })
 
 });
 

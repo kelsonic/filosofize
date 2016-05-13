@@ -37,10 +37,11 @@ post '/ponderings/:id/upvote' do
     end
     redirect "/ponderings/#{@pondering.id}"
   else
-    if request.xhr?
-      return (@pondering.upvotes.size - @pondering.downvotes.size).to_s
-    end
+
     @errors = @upvote.errors.full_messages
+    if request.xhr?
+      return "Already Voted"
+    end
     redirect "/ponderings/#{@pondering.id}"
   end
 end
@@ -56,10 +57,11 @@ post '/ponderings/:id/downvote' do
     end
     redirect "/ponderings/#{@pondering.id}"
   else
-    if request.xhr?
-      return (@pondering.upvotes.size - @pondering.downvotes.size).to_s
-    end
+
     @errors = @downvote.errors.full_messages
+    if request.xhr?
+      return "Already Voted"
+    end
     redirect "/ponderings/#{@pondering.id}"
   end
 end
