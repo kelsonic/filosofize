@@ -1,1 +1,21 @@
-Display a specific pondering
+<!-- Display a specific pondering -->
+
+<div class="container">
+  <div class="pondering">
+    <div class="row">
+    <%= @pondering.body %>
+    </div>
+    <div class="row">
+      <div class="col l1">
+      <!-- Form for upvote
+      Not sure if the form action is correct with the upvote and the end of the link -->
+      <form action="/ponderings/<%= pondering.id %>/upvote" method="post">
+      <input type="submit" value="Upvote" name="Upvote"</input>
+
+      </form>
+
+      </div>
+    </div>
+  </div>
+
+</div>
