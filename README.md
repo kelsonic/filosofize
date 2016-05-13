@@ -1,3 +1,3 @@
-![Some thought for food](/public/images/filosofize.png =100x20)
+![Some thought for food](/public/images/filosofize.png)
 
 Get filosofized!
