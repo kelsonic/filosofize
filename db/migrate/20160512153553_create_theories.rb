@@ -2,7 +2,7 @@ class CreateTheories < ActiveRecord::Migration
   def change
     create_table :theories do |t|
       t.string :body
-      t.boolean :best_theory
+      t.boolean :best_theory, default: false
       t.integer :filosofer_id
       t.integer :pondering_id
 
