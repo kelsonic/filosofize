@@ -18,14 +18,16 @@
 
 <div class="divider deep-purple"></div>
 
+<br/><br/>
+
 <div class="row">
   <div class="col s12 m8 offset-m2 l6 offset-l3">
     <% current_user.ponderings.each do |pondering| %>
       <div class="row">
-        <div class="card blue-grey darken-1">
+        <div class="card light-green">
           <a href="/ponderings/<%= pondering.id %>">
-            <div class="card-content white-text">
-              <span class="card-title"><%= pondering.title %></span>
+            <div class="card-content center white-text">
+              <span class="card-title deep-purple-text text-darken-2"><%= pondering.title %></span>
               <p><%= pondering.body %></p>
             </div>
           </a>
