@@ -26,7 +26,7 @@ The app will now be running on localhost:3000.
 
 View the app live at [filosofize.herokuapp.com](http://filosofize.herokuapp.com/).
 
-![Filosofize Example](/public/images/readme-image.png)
+![Filosofize Example](/public/images/readme-image.jpg)
 
 ## Contributing
 
